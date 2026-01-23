@@ -79,13 +79,32 @@ class AppStyles {
     fontWeight: FontWeight.w400,
     color: AppColors.secText,
   );
-  static TextStyle darkGrey16Regular = GoogleFonts.poppins(
-    fontSize: 16,
-    fontWeight: FontWeight.w400,
+  static TextStyle darkGrey20Regular = GoogleFonts.poppins(
+    fontSize: 20,
+    fontWeight: FontWeight.w500,
     color: AppColors.secTextDarkMode,
   );
   static TextStyle darkGrey14Regular = GoogleFonts.poppins(
     fontSize: 14,
+    fontWeight: FontWeight.w400,
+    color: AppColors.secTextDarkMode,
+  );
+  static TextStyle mainColor14Regular = GoogleFonts.poppins(
+    decoration: TextDecoration.underline,
+    decorationColor: AppColors.mainColor,
+    fontSize: 14,
+    fontWeight: FontWeight.w400,
+    color: AppColors.mainColor,
+  );
+  static TextStyle mainDark14Regular = GoogleFonts.poppins(
+    decoration: TextDecoration.underline,
+    decorationColor: AppColors.mainDarkMode,
+    fontSize: 14,
+    fontWeight: FontWeight.w400,
+    color: AppColors.mainDarkMode,
+  );
+  static TextStyle darkGrey16Regular = GoogleFonts.poppins(
+    fontSize: 16,
     fontWeight: FontWeight.w400,
     color: AppColors.secTextDarkMode,
   );
@@ -124,9 +143,26 @@ class AppStyles {
     fontWeight: FontWeight.w500,
     color: AppColors.white,
   );
+  static TextStyle black14Medium = GoogleFonts.poppins(
+    fontSize: 14,
+    fontWeight: FontWeight.w500,
+    color: AppColors.black,
+  );
   static TextStyle blue14Medium = GoogleFonts.poppins(
     fontSize: 14,
     fontWeight: FontWeight.w500,
     color: AppColors.mainColor,
+  );
+  static TextStyle input16Medium = GoogleFonts.poppins(
+    decoration: TextDecoration.none,
+    fontSize: 16,
+    fontWeight: FontWeight.w500,
+    color: AppColors.inputs,
+  );
+  static TextStyle whit16Medium = GoogleFonts.poppins(
+    decoration: TextDecoration.none,
+    fontSize: 16,
+    fontWeight: FontWeight.w500,
+    color: AppColors.white,
   );
 }

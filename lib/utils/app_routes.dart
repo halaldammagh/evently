@@ -5,4 +5,5 @@ class AppRoutes {
   static const String newAccountRoute = 'newAccount_screen';
   static const String forgetPassRoute = 'rest_pass';
   static const String homeScreenRoute = 'home_screen';
+  static const String addEventRoute = 'add_event_screen';
 }

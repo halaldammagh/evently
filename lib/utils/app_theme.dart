@@ -17,6 +17,8 @@ class AppThemes {
       titleMedium: AppStyles.mainColor16Bold,
       labelMedium: AppStyles.mainColor18Medium,
       labelLarge: AppStyles.black18Medium,
+        labelSmall: AppStyles.black14Medium,
+        displaySmall: AppStyles.mainColor14Regular
     ),
     bottomNavigationBarTheme: BottomNavigationBarThemeData(
       backgroundColor: AppColors.white,
@@ -47,6 +49,9 @@ class AppThemes {
       titleSmall: AppStyles.mainDark14Bold,
       titleMedium: AppStyles.mainDark16Bold,
       labelLarge: AppStyles.white18Medium,
+        labelSmall: AppStyles.white14Medium,
+        displaySmall: AppStyles.mainDark14Regular
+
     ),
     bottomNavigationBarTheme: BottomNavigationBarThemeData(
       backgroundColor: AppColors.darkBg,

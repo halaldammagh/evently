@@ -28,7 +28,7 @@
   "enter_your_password": "Enter your password",
   "forget_password?": "Forget Password? ",
   "login": "Login",
-  "don't_have_an_account?": "Don’t have an account ?",
+  "dont_have_an_account?": "Don’t have an account ?",
   "signup": "Signup",
   "or": "Or",
   "login_with_google": "  Login with Google",
@@ -38,6 +38,45 @@
   "already_have_an_account?": "Already have an account?",
   "sign_up_with_google": " Sign up with Google",
   "forget_password": "Forget Password",
-  "reset_password": "Reset password"
+  "reset_password": "Reset password",
+  "welcome_back": "Welcome Back ✨",
+  "john_safwat": "John Safwat",
+  "en": "EN",
+  "all": "All",
+  "sport": "Sport",
+  "birthday": "Birthday",
+  "book_club": "Book club",
+  "exhibition": "Exhibition",
+  "meeting": "Meeting",
+  "gaming": "Gaming",
+  "work_shop": "WorkShop",
+  "holiday": "Holiday",
+  "eating": "Eating",
+  "search_for_event": "Search for event",
+  "add_event": "Add Event",
+  "title": "Title",
+  "event_title": "Event Title",
+  "description": "Description",
+  "event_description....": "Event Description....",
+  "event_date": "Event Date",
+  "event_time": "Event Time",
+  "choose_date": "Choose date",
+  "choose_time": "Choose time",
+  "event_details": "Event details",
+  "We are_going_to_play_football ": "We’re going to play football ",
+  "We are_going_to_meeting": "We’re going to meeting ",
+  "We are_going_to_eating": "We’re going to eating ",
+  "We are_going_to_birthday": "We’re going to birthday ",
+  "We are_going_to_workshop": "We’re going to workShop ",
+  "We are_going_to_reading_book": "We’re going to reading book "
+
+
+
+
+
+
+
+
+
 
 }

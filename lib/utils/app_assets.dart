@@ -42,6 +42,7 @@ class AppAssets {
       'assets/images/event/exhibition_light_event.png';
   static const String sportEvnLight =
       'assets/images/event/sport_light_event.png';
+  static const String sportEvnDark = 'assets/images/event/sport_dark_event.png';
   static const String birthEvnDark =
       'assets/images/event/birthday_dark_event.png';
   static const String meetingEvnDark =
@@ -50,5 +51,28 @@ class AppAssets {
       'assets/images/event/bookclub_dark_event.png';
   static const String exhibitionEvnDark =
       'assets/images/event/exhibition_dark_event.png';
-  static const String sportEvnDark = 'assets/images/event/sport_dark_event.png';
+  static const String searchIcon = 'assets/images/icons/search_icon.png';
+  static const String searchIconDark =
+      'assets/images/icons/search_icon_dark.png';
+  static const String eatingDark = 'assets/images/event/eating_dark_event.png';
+  static const String gamingDark = 'assets/images/event/gaming_dark_event.png';
+  static const String holidayDark =
+      'assets/images/event/holiday_dark_event.png';
+  static const String workshopDark =
+      'assets/images/event/workshop_dark_event.png';
+  static const String eatingLight =
+      'assets/images/event/eating_light_event.png';
+  static const String gamingLight =
+      'assets/images/event/gaming_light_event.png';
+  static const String holidayLight =
+      'assets/images/event/holiday_light_event.png';
+  static const String workshopLight =
+      'assets/images/event/workshop_light_event.png';
+  static const String calendarIconLight =
+      'assets/images/icons/calendarIcon_light.png';
+  static const String clockIconLight =
+      'assets/images/icons/clockIcon_light.png';
+  static const String calendarIconDark =
+      'assets/images/icons/calendarIcon_dark.png';
+  static const String clockIconDark = 'assets/images/icons/clockIcon_dark.png';
 }

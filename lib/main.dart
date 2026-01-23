@@ -2,6 +2,7 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:evently/auth/login/create_your_account_screen.dart';
 import 'package:evently/auth/login/forget_pass_screen.dart';
 import 'package:evently/auth/login/login_screen.dart';
+import 'package:evently/home/add_event_screen.dart';
 import 'package:evently/home_screen.dart';
 import 'package:evently/intro_screen.dart';
 import 'package:evently/providers/app_language_provider.dart';
@@ -57,6 +58,7 @@ class MyApp extends StatelessWidget {
         AppRoutes.newAccountRoute: (context) => CreateYourAccountScreen(),
         AppRoutes.forgetPassRoute: (context) => ForgetPassScreen(),
         AppRoutes.homeScreenRoute: (context) => HomeScreen(),
+        AppRoutes.addEventRoute: (context) => AddEventScreen(),
       },
       theme: AppThemes.lightTheme,
       darkTheme: AppThemes.darkTheme,

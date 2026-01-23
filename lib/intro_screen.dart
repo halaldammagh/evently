@@ -222,7 +222,8 @@ class _IntroScreenState extends State<IntroScreen> {
             Text(
               intro_text[index],
               style: Theme.of(context).textTheme.bodyMedium,
-            ).tr()SizedBox(height: 20,),
+            ).tr(),
+            SizedBox(height: 20,),
 
             CustomElevatedButton(
               text: isLast ? 'get_started'.tr() : 'next'.tr(),

@@ -21,8 +21,6 @@ class CreateYourAccountScreen extends StatelessWidget {
     var width = MediaQuery.of(context).size.width;
     return Scaffold(
       appBar: AppBar(
-        automaticallyImplyLeading: false,
-
         backgroundColor: AppColors.transParent,
         centerTitle: true,
         title: Image.asset(
@@ -72,7 +70,7 @@ class CreateYourAccountScreen extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Text(
-                  'Already have an account?',
+                  'already_have_an_account?',
                   style: Theme.of(context).textTheme.headlineMedium,
                 ).tr(),
                 TextButton(
