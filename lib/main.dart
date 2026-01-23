@@ -16,18 +16,23 @@ import 'package:provider/provider.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await EasyLocalization.ensureInitialized();
+
+  final langProvider = AppLanguageProvider();
+  final themeProvider = AppThemeProvider();
+
+  await langProvider.loadLanguage();
+  await themeProvider.loadTheme();
   runApp(
       EasyLocalization(
         supportedLocales: [Locale('en'), Locale('ar')],
         path: 'assets/translations',
-        // <-- change the path of the translation files
         fallbackLocale: Locale('en'),
-        saveLocale: true,
+        startLocale: Locale(langProvider.appLanguage),
 
         //  يحفظ اللغة المختارة حتى بعد إغلاق التطبيق
         child: MultiProvider(providers: [
-          ChangeNotifierProvider(create: (context) => AppLanguageProvider(),),
-          ChangeNotifierProvider(create: (context) => AppThemeProvider())
+          ChangeNotifierProvider(create: (context) => langProvider,),
+          ChangeNotifierProvider(create: (context) => themeProvider)
         ],
             child: const MyApp()),
       ));
