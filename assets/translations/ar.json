@@ -68,7 +68,10 @@
   "We are_going_to_eating": "سنخرج لتناول الطعام",
   "We are_going_to_birthday": "نحتفل بعيد ميلاد",
   "We are_going_to_workshop": "سنحضر ورشة عمل",
-  "We are_going_to_reading_book": "سنقرأ كتابًا"
+  "We are_going_to_reading_book": "سنقرأ كتابًا",
+  "Please_enter_event_title": "قم بادخال اسم الحدث ",
+  "Please_enter_event_description": "قم بادخال وصف الحدث"
+
 
 
 

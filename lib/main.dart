@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:evently/auth/login/create_your_account_screen.dart';
 import 'package:evently/auth/login/forget_pass_screen.dart';
@@ -7,6 +8,7 @@ import 'package:evently/home_screen.dart';
 import 'package:evently/intro_screen.dart';
 import 'package:evently/providers/app_language_provider.dart';
 import 'package:evently/providers/app_theme_provider.dart';
+import 'package:evently/providers/event_list_provider.dart';
 import 'package:evently/start_screen.dart';
 import 'package:evently/utils/app_routes.dart';
 import 'package:evently/utils/app_theme.dart';
@@ -18,49 +20,51 @@ import 'firebase_options.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await Firebase.initializeApp(
-    options: DefaultFirebaseOptions.currentPlatform,
-  );
-  WidgetsFlutterBinding.ensureInitialized();
   await EasyLocalization.ensureInitialized();
 
-  final langProvider = AppLanguageProvider();
-  final themeProvider = AppThemeProvider();
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );wait FirebaseFirestore.instance.disableNetwork();
 
+  ///offline  هيكيش في ستورج التلفون بتاعنا
+  ffinal langProvider = AppLanguageProvider();
+  final themeProvider = AppThemeProvider();
+  final eventProvider = EventListProvider();
   await langProvider.loadLanguage();
   await themeProvider.loadTheme();
-  runApp(
-      EasyLocalization(
-        supportedLocales: [Locale('en'), Locale('ar')],
-        path: 'assets/translations',
-        fallbackLocale: Locale('en'),
-        startLocale: Locale(langProvider.appLanguage),
 
-        //  يحفظ اللغة المختارة حتى بعد إغلاق التطبيق
-        child: MultiProvider(providers: [
-          ChangeNotifierProvider(create: (context) => langProvider,),
-          ChangeNotifierProvider(create: (context) => themeProvider)
+  runApp(
+    EasyLocalization(
+      supportedLocales: const [Locale('en'), Locale('ar')],
+      path: 'assets/translations',
+      fallbackLocale: const Locale('en'),
+      startLocale: Locale(langProvider.appLanguage),
+      child: MultiProvider(
+        providers: [
+          ChangeNotifierProvider(create: (_) => langProvider),
+          ChangeNotifierProvider(create: (_) => themeProvider),
+          ChangeNotifierProvider(create: (_) => eventProvider)
         ],
-            child: const MyApp()),
-      ));
+        child: const MyApp(),
+      ),
+    ),
+  );
 }
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    var languageProvider = Provider.of<AppLanguageProvider>(context);
     var themeProvider = Provider.of<AppThemeProvider>(context);
+
     return MaterialApp(
-      // localeResolutionCallback: (deviceLocale, supportedLocales) {
-      //   return context.locale; //  هذا السطر هو الحل
-      // },
       debugShowCheckedModeBanner: false,
+
       localizationsDelegates: context.localizationDelegates,
       supportedLocales: context.supportedLocales,
-      locale: Locale(languageProvider.appLanguage),
+      locale: context.locale,
+
       title: 'Evently',
       initialRoute: AppRoutes.startScreenRoute,
       routes: {

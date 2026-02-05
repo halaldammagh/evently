@@ -1,16 +1,21 @@
-import 'package:evently/utils/app_assets.dart';
+import 'package:easy_localization/easy_localization.dart';
+import 'package:evently/model/event.dart';
 import 'package:evently/utils/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import '../../../../providers/app_language_provider.dart';
 import '../../../../providers/app_theme_provider.dart';
+import '../../../../providers/event_list_provider.dart';
 
 class EventItem extends StatelessWidget {
-  const EventItem({super.key});
+  final Event event;
+
+  EventItem({super.key, required this.event});
 
   @override
   Widget build(BuildContext context) {
+    var eventsProvider = Provider.of<EventListProvider>(context);
     var themeProvider = Provider.of<AppThemeProvider>(context);
     var languageProvider = Provider.of<AppLanguageProvider>(context);
     var height = MediaQuery.of(context).size.height;
@@ -26,11 +31,7 @@ class EventItem extends StatelessWidget {
         borderRadius: BorderRadius.circular(16),
         image: DecorationImage(
           fit: BoxFit.fill,
-          image: AssetImage(
-            themeProvider.isDarkMode()
-                ? AppAssets.birthEvnDark
-                : AppAssets.birthEvnLight,
-          ),
+          image: AssetImage(event.eventImage),
         ),
         border: Border.all(
           color: themeProvider.isDarkMode()
@@ -67,7 +68,7 @@ class EventItem extends StatelessWidget {
                 ),
               ),
               child: Text(
-                '21 Jan',
+                DateFormat('d MMM').format(event.eventDate),
                 style: Theme.of(context).textTheme.titleMedium,
               ),
             ),
@@ -92,13 +93,17 @@ class EventItem extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text(
-                    'This is a Birthday Party',
+                    event.eventTitle,
                     style: Theme.of(context).textTheme.labelSmall,
                   ),
                   IconButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      eventsProvider.updateIsFavorite(event);
+                    },
                     icon: Icon(
-                      Icons.favorite,
+                      event.isFavourite
+                          ? Icons.favorite
+                          : Icons.favorite_border,
                       color: themeProvider.isDarkMode()
                           ? AppColors.mainDarkMode
                           : AppColors.mainColor,

@@ -1,6 +1,7 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:evently/home/tabs/home/widget/event_item.dart';
 import 'package:evently/home/tabs/home/widget/tab_widget.dart';
+import 'package:evently/providers/event_list_provider.dart';
 import 'package:evently/utils/app_assets.dart';
 import 'package:evently/utils/app_colors.dart';
 import 'package:evently/utils/app_styles.dart';
@@ -16,23 +17,21 @@ class HomeTab extends StatefulWidget {
 }
 
 class _HomeTabState extends State<HomeTab> {
-  List<String> eventsNameList = [
-    'all'.tr(),
-    'sport'.tr(),
-    'birthday'.tr(),
-    'meeting'.tr(),
-    'gaming'.tr(),
-    'work_shop'.tr(),
-    'book_club'.tr(),
-    'exhibition'.tr(),
-    'holiday'.tr(),
-    'eating'.tr(),
-  ];
+  late EventListProvider eventProvider;
 
-  int selectedIndex = 0;
+  void initState() {
+    //todo: implement initState
+    super.initState();
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      eventProvider.getAllEventsFromFireStore();
+    });
+  }
+
 
   @override
   Widget build(BuildContext context) {
+    eventProvider = Provider.of<EventListProvider>(context);
+    eventProvider.getEventsNameList();
     var themeProvider = Provider.of<AppThemeProvider>(context);
     var languageProvider = Provider.of<AppLanguageProvider>(context);
     var height = MediaQuery
@@ -44,6 +43,9 @@ class _HomeTabState extends State<HomeTab> {
         .size
         .width;
     // TODO: implement build
+    if (eventProvider.eventsList.isEmpty) {
+      eventProvider.getAllEventsFromFireStore();
+    }
     return Scaffold(
       appBar: AppBar(
         automaticallyImplyLeading: false,
@@ -113,11 +115,10 @@ class _HomeTabState extends State<HomeTab> {
             ),
 
             child: DefaultTabController(
-              length: eventsNameList.length,
+              length: eventProvider.eventsNameList.length,
               child: TabBar(
                 onTap: (index) {
-                  selectedIndex = index;
-                  setState(() {});
+                  eventProvider.changeSelectedIndex(index);
                 },
                 labelPadding: EdgeInsets.symmetric(horizontal: width * 0.01),
                 tabAlignment: TabAlignment.start,
@@ -125,11 +126,12 @@ class _HomeTabState extends State<HomeTab> {
                 isScrollable: true,
                 dividerColor: AppColors.transParent,
                 indicatorColor: AppColors.transParent,
-                tabs: eventsNameList.map((eventName) {
+                tabs: eventProvider.eventsNameList.map((eventName) {
                   return TabWidget(
                     eventName: eventName,
                     isSelected:
-                    selectedIndex == eventsNameList.indexOf(eventName),
+                    eventProvider.selectedIndex ==
+                        eventProvider.eventsNameList.indexOf(eventName),
                     selectedColor: themeProvider.isDarkMode()
                         ? AppColors.mainColor
                         : AppColors.white,
@@ -144,19 +146,24 @@ class _HomeTabState extends State<HomeTab> {
             ),
           ),
           Expanded(
-            child: ListView.separated(
-              padding: EdgeInsets.only(top: height * 0.002),
+            child: eventProvider.filterList.isEmpty ?
+            Center(child: Text('No events found'),)
+                :
+            ListView.separated(
+              padding: EdgeInsets.only(top: height * 0.009),
               itemBuilder: (context, index) {
-                return EventItem();
+                return EventItem(event: eventProvider.filterList[index],);
               },
               separatorBuilder: (context, index) {
-                return SizedBox(height: height * 0.02,);
+                return SizedBox(height: height * 0.02);
               },
-              itemCount: 20,
+              itemCount: eventProvider.filterList.length,
             ),
           ),
         ],
       ),
     );
   }
+
+
 }

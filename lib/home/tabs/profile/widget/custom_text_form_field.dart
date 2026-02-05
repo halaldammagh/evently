@@ -6,22 +6,29 @@ import '../../../../providers/app_theme_provider.dart';
 import '../../../../utils/app_colors.dart';
 import '../../../../utils/app_styles.dart';
 
+typedef Validation = void Function(String)?;
+typedef Validator = String? Function(String?)?;
 class CustomTextFormField extends StatelessWidget {
   final Widget? suffixIcon;
   final Widget? prefixIcon;
   final String hintText;
-
   // خصائص التحكم بالطول
   final int minLines;
   final int maxLines;
+  TextEditingController? controller;
+  Validation? onChanged;
+  Validator validator;
 
-  const CustomTextFormField({
+  CustomTextFormField({
     super.key,
     required this.hintText,
     this.suffixIcon,
     this.prefixIcon,
     this.minLines = 1,
     this.maxLines = 1,
+    this.controller,
+    this.onChanged,
+    this.validator
   });
 
   @override
@@ -29,6 +36,9 @@ class CustomTextFormField extends StatelessWidget {
     var themeProvider = Provider.of<AppThemeProvider>(context);
 
     return TextFormField(
+      controller: controller,
+      onChanged: onChanged,
+      validator: validator,
       minLines: minLines,
       maxLines: maxLines,
 
