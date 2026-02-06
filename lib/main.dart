@@ -23,11 +23,11 @@ void main() async {
   await EasyLocalization.ensureInitialized();
 
   await Firebase.initializeApp(
-    options: DefaultFirebaseOptions.currentPlatform,
-  );wait FirebaseFirestore.instance.disableNetwork();
+    options: DefaultFirebaseOptions.currentPlatform,;
+  await FirebaseFirestore.instance.disableNetwork();
 
-  ///offline  هيكيش في ستورج التلفون بتاعنا
-  ffinal langProvider = AppLanguageProvider();
+  ////offline  هيكيش في ستورج التلفون بتاعنا
+  final langProvider = AppLanguageProvider();
   final themeProvider = AppThemeProvider();
   final eventProvider = EventListProvider();
   await langProvider.loadLanguage();
